@@ -1,7 +1,7 @@
 const { response } = require('express');
 const Producto = require('../models/Producto')
 
-
+//Ya
 const crearProductos = async (req, res = response) => {
     
     console.log( req.body);
@@ -25,9 +25,11 @@ const crearProductos = async (req, res = response) => {
     }
 }
 
+//Ya
 const obtenerProducto = async (req, res = response) => {
 
     const producto = await Producto.find();
+    console.log(producto);
 
     res.json({
         ok: true,
@@ -69,6 +71,7 @@ const actualizarProductos = async (req, res = response) => {
     }
 }
 
+//Ya
 const eliminarProductos = async (req, res = response) => {
 
     const productoId = req.params.id;

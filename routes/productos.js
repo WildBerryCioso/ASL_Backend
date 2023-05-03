@@ -12,10 +12,12 @@ const { obtenerProducto, crearProductos, actualizarProductos, eliminarProductos 
 
 const router = new Router();
 
-router.use(validarJWT);
-
 //Obtener productos
 router.get('/', obtenerProducto);
+
+router.use(validarJWT);
+
+
 
 //Crear productos
 router.post(
