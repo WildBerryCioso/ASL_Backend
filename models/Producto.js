@@ -1,6 +1,11 @@
 const { Schema, model} = require('mongoose');
 
 const productoSchema = Schema({
+    
+    referencia:{
+        type: String,
+        required: true
+    },
     titulo:{
         type: String,
         required: true

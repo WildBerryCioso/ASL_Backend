@@ -17,12 +17,11 @@ router.get('/', obtenerProducto);
 
 router.use(validarJWT);
 
-
-
 //Crear productos
 router.post(
     '/',
     [
+        check('referencia', 'El titulo es obligatorio').not().isEmpty(),
         check('titulo', 'El titulo es obligatorio').not().isEmpty(),
         check('descripcion', 'La descripcion es obligatoria').not().isEmpty(),
         check('precio', 'El precio es obligatoria').not().isEmpty(),

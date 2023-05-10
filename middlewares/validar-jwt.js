@@ -15,7 +15,7 @@ const validarJWT = (req, res = response, next) => {
     }
 
     try {
-        const { uid, name, typeU } = jwt.verify(
+        const { uid, name, typeU , email} = jwt.verify(
             token,
             process.env.SECRET_JWT_SEED
         );
@@ -23,6 +23,7 @@ const validarJWT = (req, res = response, next) => {
         req.uid = uid;
         req.name = name;
         req.typeU = typeU;
+        req.email = email;
 
     } catch (error) {
         return res.status(401).json({

@@ -29,7 +29,6 @@ const crearProductos = async (req, res = response) => {
 const obtenerProducto = async (req, res = response) => {
 
     const producto = await Producto.find();
-    console.log(producto);
 
     res.json({
         ok: true,
@@ -37,13 +36,14 @@ const obtenerProducto = async (req, res = response) => {
     })
 }
 
+//Ya
 const actualizarProductos = async (req, res = response) => {
 
     const productoId = req.params.id;
 
     try {
 
-        const producto = await Producto.findById(productoId);
+        let producto = await Producto.findById(productoId);
 
         if(!producto){
             return res.status(404).json({
@@ -57,9 +57,13 @@ const actualizarProductos = async (req, res = response) => {
         }
 
         const productoActualizado = await Producto.findByIdAndUpdate( productoId, nuevoProducto, {new: true});
+
+        producto = await Producto.find()
+
         res.json({
             ok: true,
-            evento: productoActualizado
+            evento: productoActualizado,
+            producto
         })
 
     } catch (error) {
@@ -71,14 +75,14 @@ const actualizarProductos = async (req, res = response) => {
     }
 }
 
-//Ya
+//Ya - Ultimar detalles
 const eliminarProductos = async (req, res = response) => {
 
     const productoId = req.params.id;
 
     try {
 
-        const producto = await Producto.findByIdAndDelete(productoId);
+        let producto = await Producto.findById(productoId);
 
         if(!producto){
             return res.status(404).json({
@@ -87,14 +91,10 @@ const eliminarProductos = async (req, res = response) => {
             });
         }
 
-        const nuevoProducto = {
-            ...req.body
-        }
+        await Producto.findByIdAndDelete(productoId);
+        producto = await Producto.find()
 
-        await Producto.findByIdAndUpdate( productoId);
-        res.json({
-            ok: true,
-        })
+        res.json({ ok: true, producto });
 
     } catch (error) {
         console.log(error);
