@@ -21,6 +21,16 @@ const usuarioSchema = Schema({
     typeU: {
         type: String,
         required: true
+    },
+
+    number: {
+        type: Number,
+        required: true
+    },
+
+    direction: {
+        type: String,
+        required: true
     }
 });
 
